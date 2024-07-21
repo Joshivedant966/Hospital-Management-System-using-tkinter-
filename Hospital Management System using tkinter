@@ -1,0 +1,861 @@
+
+
+from tkinter import*
+import tkinter as tk
+from tkinter import ttk
+from tkinter import messagebox
+root=Tk()
+
+root.geometry('1000x600')
+clr1= '#49A4FF'
+clr2='#5DA28E'
+clr3='#668CFF'
+clr4='#5064A4'
+clr5='#EBD099'
+
+
+
+
+
+
+frame_for_button=None
+
+
+
+
+
+set=[]
+
+def addInDic(HrNo,new_patient,new_patient_age,new_patient_bg,new_patient_sex,new_patient_disease,new_patient_Dr_name):
+    dic={'HrNo':HrNo,
+         'Name':new_patient,
+         'Age':new_patient_age,
+         'Blood Group':new_patient_bg,
+         'Sex':new_patient_sex,
+         'Disease':new_patient_disease,
+         'Doctor Name':new_patient_Dr_name
+         
+         
+         }
+    
+    set.append(dic)
+   # print(set)
+
+
+
+addInDic("hr.001", "A", "20", "AB+", 'male', 'astama', 'Dr.joshi')
+addInDic("hr.002", "jonh", "22", "O-", 'male', 'corona', 'Dr.vedant')
+addInDic("hr.003", "C", "21", "A+", 'female', 'eye opration', 'Dr.j')
+addInDic("hr.004", 'A', "23", 'A+', 'femle', 'skin transtplant', 'Dr.joshi')
+addInDic("hr.005", "z", "22", "O", 'male', 'eye opration', 'Dr.j')
+addInDic("hr.006", "C", '11', "A+", 'female', 'fever', 'Dr.vedant')
+addInDic("hr.007", 'A', '22', 'A+', 'male', 'fever', 'Dr.joshi')
+
+#Add data XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+def add_in_add(name_ent,hrno_ent,age_ent,BGL_Combo,GL_Combo,disease_ent,DNL_Combo):
+    name_ent=name_ent.get()
+    hrno_ent=hrno_ent.get()
+    age_ent=age_ent.get()
+    BGL_Combo=BGL_Combo.get()
+    GL_Combo=GL_Combo.get()
+    disease_ent=disease_ent.get()
+    DNL_Combo=DNL_Combo.get()
+
+
+    if name_ent=="":
+        msb1=messagebox.showerror('Question','Error,Please Enter Your Name')
+        return add_data()
+
+
+    if hrno_ent=="":
+        msb1=messagebox.showerror('Question','Error,Please Enter The Hr.Number')
+        return add_data()
+    
+    if age_ent=="":
+        msb2=messagebox.showerror('Question','Error,Please Enter Your Age ')
+        return add_data()
+    
+    if BGL_Combo=="":
+        msb1=messagebox.showerror('Question','Error,Please Enter Your Blood Group')
+        return add_data()
+    
+    if GL_Combo=="":
+        msb1=messagebox.showerror('Question','Error,Please Enter Your Gender')
+        return add_data()
+    
+    if disease_ent=="":
+        msb1=messagebox.showerror('Question','Error,Please Enter Your disease')
+        return add_data()
+    
+    if DNL_Combo=="":
+        msb1=messagebox.showerror('Question','Error,Please Enter Your Doctor Name')
+        return add_data()
+
+
+    for dic1 in set:
+        for d1 in dic1 :
+            if dic1[d1]== hrno_ent:
+                msb=messagebox.showerror('Question','This Hr.Number Is Alredy Exist So Plz Try Another Hr. Number.')
+                return add_data()
+            
+            
+
+
+    
+
+    addInDic(name_ent,hrno_ent,age_ent,BGL_Combo,GL_Combo,disease_ent,DNL_Combo)
+
+    global frame_for_button
+    global frame_for_label
+    frame_for_button.place_forget()
+
+    adl1.config(text='Your Record Submited Successfuly!')
+    
+    frame_for_button=Frame(root,width=410,height=50,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor='red')
+    frame_for_button.place(x=110,y=600)
+    back=Button(frame_for_button,text='back',bg='red',fg='white',width=15,height=1,command=lambda: usless())
+    back.pack()
+    
+
+
+
+
+
+def add_data():
+    entry_frame=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor='red')
+    entry_frame.place(x=0,y=150)
+
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=80,y=280)
+    name_ent=Entry(entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=40)
+    name_ent.pack()
+    
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=80,y=320)
+    hrno_ent=Entry(entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=40)
+    hrno_ent.pack()
+    
+
+
+
+
+
+
+    
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=80,y=360)
+    age_ent=Entry(entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=40)
+    age_ent.pack()
+    
+        # entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    # entry_frameD.place(x=160,y=400)
+    # blood_group_ent=Entry(entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=29)
+    # blood_group_ent.pack()
+    
+    # entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    # entry_frameD.place(x=100,y=440)
+    # gender_ent=Entry(entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=38)
+# gender_ent.pack()
+
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=100,y=480)
+    disease_ent=Entry(entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=37)
+    disease_ent.pack()
+    
+    # entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    # entry_frameD.place(x=150,y=520)
+    # dr_name_ent=Entry(entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=31)
+# dr_name_ent.pack()
+
+#combobox==============================================================================================
+
+    Blood_Group_list=['A+','B+','AB+','O+','A-','B-','AB-','o-','Other']
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=160,y=400)
+    BGL_Combo=ttk.Combobox(entry_frameD,values=Blood_Group_list,width=30,state='readonly')
+    BGL_Combo.pack()
+    
+    
+    
+    gender_list=['Male','Female','Other']
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=100,y=440)
+    GL_Combo=ttk.Combobox(entry_frameD,values=gender_list,width=40,state='readonly')
+    GL_Combo.pack()
+    
+    Doctor_Name_list=['Dr. Jonh','Dr.gross','Dr.lisa']
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=150,y=520)
+    DNL_Combo=ttk.Combobox(entry_frameD,values=Doctor_Name_list,width=31,state='readonly')
+    DNL_Combo.pack()
+    
+    
+    #label pannel=====================================================================================
+    
+    lbn= Label(root,text='Name:-',bg=clr2,font=('Helvetica',15,'bold'))
+    lbn.place(x=2,y=276)
+    
+    lbn= Label(root,text='Hr.no.:-',bg=clr2,font=('Helvetica',14,'bold'))
+    lbn.place(x=2,y=316)
+    
+    lbn= Label(root,text='Age:-',bg=clr2,font=('Helvetica',15,'bold'))
+    lbn.place(x=2,y=356)
+    
+    lbn= Label(root,text='Blood Group:-',bg=clr2,font=('Helvetica',15,'bold'))
+    lbn.place(x=2,y=396)
+    
+    lbn= Label(root,text='Gender:-',bg=clr2,font=('Helvetica',15,'bold'))
+    lbn.place(x=2,y=436)
+    
+    lbn= Label(root,text='Disease:-',bg=clr2,font=('Helvetica',15,'bold'))
+    lbn.place(x=2,y=478)
+
+    lbn= Label(root,text='Doctor Name:-',bg=clr2,font=('Helvetica',15,'bold'))
+    lbn.place(x=2,y=516)
+
+    
+
+     #displya screen ========================================================================
+    display_frame = Frame(root,width=380,height=100,bg=clr5,highlightbackground='black',highlightthickness=2)
+    display_frame.place(x=10,y=160)
+    
+
+
+
+    
+    global adl1
+    frame_for_label=Frame(root,width=360,height=50,bg=clr5)
+    frame_for_label.place(x=15,y=164)
+    adl1=Label(frame_for_label,text='Please Submit the Folloing Form',bg=clr5)
+    adl1.pack()
+    
+    global frame_for_button
+    frame_for_button=Frame(root,width=410,height=50,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor='red')
+    frame_for_button.place(x=110,y=600)
+    ad_submit=Button(frame_for_button,text='Submit',bg='red',fg='white',width=15,height=1,command=lambda: add_in_add(name_ent,hrno_ent,age_ent,BGL_Combo,GL_Combo,disease_ent,DNL_Combo))
+    ad_submit.pack()
+    
+#XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+def show_data():
+
+    f1 = Frame(root,width=1000,height=600,bg="light gray",highlightbackground='black',highlightthickness=2)
+    f1.place(x=409,y=100)
+    
+    text_area = tk.Text(f1, wrap=tk.WORD,bg='light gray',width=120,height=37)
+    text_area.pack(expand=True, fill="both")
+
+    for patient in set:
+        text_area.insert(tk.END, "HrNo: {}\n".format(patient["HrNo"]))
+        text_area.insert(tk.END, "Name: {}\n".format(patient["Name"]))
+        text_area.insert(tk.END, "Age: {}\n".format(patient["Age"]))
+        text_area.insert(tk.END, "Blood Group: {}\n".format(patient["Blood Group"]))
+        text_area.insert(tk.END, "Sex: {}\n".format(patient["Sex"]))
+        text_area.insert(tk.END, "Disease: {}\n".format(patient["Disease"]))
+        text_area.insert(tk.END, "Doctor Name: {}\n\n".format(patient["Doctor Name"]))
+
+    text_area.config(state=tk.DISABLED) 
+
+
+
+#XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+#search data
+
+def pre_search_data():
+
+    frame_for_label=Frame(root,width=360,height=50,bg=clr5)
+    frame_for_label.place(x=15,y=164)
+    Sdl1=Label(frame_for_label,text='Enter The Search Term :-',bg=clr5,font=('Helvetica',10,'bold'))
+    Sdl1.pack()
+    frame_for_search_entry=Frame(root,width=300,height=300,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr2)
+    frame_for_search_entry.place(x=238,y=165)
+    search_ent=Entry(frame_for_search_entry,bg='light gray',font=('Helvetica',10,'bold'))
+    search_ent.pack()
+
+    frame_for_search_button=Frame(root,width=300,height=300,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr2)
+    frame_for_search_button.place(x=238,y=200)
+    search_button = Button(frame_for_search_button,text='Search.',bg='red',fg='white',font=('Helvetica',10,'bold'),command=lambda: search_data(search_ent))
+    search_button.pack()
+
+
+def search_data(search_ent):
+    s1=search_ent.get()
+    print(s1)
+
+
+
+    f2 = Frame(root,width=1000,height=600,bg="light gray",highlightbackground='black',highlightthickness=2)
+    f2.place(x=409,y=100)
+    
+    seach_text = tk.Text(f2, wrap=tk.WORD,bg='light gray',width=120,height=37)
+    seach_text.pack(expand=True, fill="both")
+
+    for dic5 in set:
+        for d5 in dic5:
+            if dic5[d5]==s1:
+                print(dic5)
+
+                seach_text.insert(tk.END, "HrNo: {}\n".format(dic5["HrNo"]))
+                seach_text.insert(tk.END, "Name: {}\n".format(dic5["Name"]))
+                seach_text.insert(tk.END, "Age: {}\n".format(dic5["Age"]))
+                seach_text.insert(tk.END, "Blood Group: {}\n".format(dic5["Blood Group"]))
+                seach_text.insert(tk.END, "Sex: {}\n".format(dic5["Sex"]))
+                seach_text.insert(tk.END, "Disease: {}\n".format(dic5["Disease"]))
+                seach_text.insert(tk.END, "Doctor Name: {}\n\n".format(dic5["Doctor Name"]))
+
+    seach_text.config(state=tk.DISABLED)  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+#XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+#delete data 
+def pre_delete_data():
+    
+    frame_for_label=Frame(root,width=360,height=50,bg=clr5)
+    frame_for_label.place(x=15,y=164)
+    udl1=Label(frame_for_label,text='Enter The Hr. Number:-',bg=clr5,font=('Helvetica',10,'bold'))
+    udl1.pack()
+    frame_for_hrno_entry=Frame(root,width=300,height=300,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr2)
+    frame_for_hrno_entry.place(x=238,y=165)
+    hrno_ent_del=Entry(frame_for_hrno_entry,bg='light gray',font=('Helvetica',10,'bold'))
+    hrno_ent_del.pack()
+    frame_for_hrno_button=Frame(root,width=300,height=300,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr2)
+    frame_for_hrno_button.place(x=238,y=200)
+    hrno_button=Button(frame_for_hrno_button,text='Done.',bg='red',fg='white',font=('Helvetica',10,'bold'),command=lambda: delete_data(hrno_ent_del))
+    hrno_button.pack()
+ 
+def delete_data(hrno_ent_del):
+    hrno_for_delete_records=hrno_ent_del.get()
+    print(hrno_for_delete_records)
+    if not hrno_for_delete_records:
+        messagebox.showerror("Error", "Please enter an Hr. Number.")
+        return pre_delete_data()
+    found= False
+    
+    for dic3 in set:
+        for d3 in dic3:
+            if dic3['HrNo']==hrno_for_delete_records:
+                # print(dic3)
+
+
+                delete_frame=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor='red')
+                delete_frame.place(x=0,y=150)
+
+                global adl1
+
+                display_frame = Frame(root,width=380,height=100,bg=clr5,highlightbackground='black',highlightthickness=2)
+                display_frame.place(x=10,y=160)
+
+                frame_for_label=Frame(root,width=360,height=50,bg=clr5)
+                frame_for_label.place(x=15,y=164)
+                udl1=Label(frame_for_label,text='Do You Want To Delete The This Record ',bg=clr5,font=('Helvetica',10,'bold'))
+                udl1.pack()
+
+                
+                
+
+                #label pannel=====================================================================================
+    
+                lbn= Label(root,text='Name:-',bg=clr2,font=('Helvetica',15,'bold'))
+                lbn.place(x=2,y=280)
+    
+                lbn= Label(root,text='Hr.no.:-',bg=clr2,font=('Helvetica',14,'bold'))
+                lbn.place(x=2,y=330)
+    
+                lbn= Label(root,text='Age:-',bg=clr2,font=('Helvetica',15,'bold'))
+                lbn.place(x=2,y=380)
+    
+                lbn= Label(root,text='Blood Group:-',bg=clr2,font=('Helvetica',15,'bold'))
+                lbn.place(x=2,y=430)
+    
+                lbn= Label(root,text='Gender:-',bg=clr2,font=('Helvetica',15,'bold'))
+                lbn.place(x=2,y=480)
+    
+                lbn= Label(root,text='Disease:-',bg=clr2,font=('Helvetica',15,'bold'))
+                lbn.place(x=2,y=530)
+
+                lbn= Label(root,text='Doctor Name:-',bg=clr2,font=('Helvetica',15,'bold'))
+                lbn.place(x=2,y=580)
+
+#-------------------------------------------------------------------------------------------------------
+                global lbl_UPD_name
+                lbl_UPD_name=Label(root,text=dic3["Name"],bg=clr2,font=('Helvetica',15,'bold'))
+                lbl_UPD_name.place(x=200,y=280)
+
+                global lbl_UPD_hrno
+                lbl_UPD_hrno=Label(root,text=dic3["HrNo"],bg=clr2,font=('Helvetica',15,'bold'))
+                lbl_UPD_hrno.place(x=200,y=330)
+                
+                global lbl_UPD_age
+                lbl_UPD_age=Label(root,text=dic3["Age"],bg=clr2,font=('Helvetica',15,'bold'))
+                lbl_UPD_age.place(x=200,y=380)
+                
+                global lbl_UPD_BG
+                lbl_UPD_BG=Label(root,text=dic3["Blood Group"],bg=clr2,font=('Helvetica',15,'bold'))
+                lbl_UPD_BG.place(x=200,y=430)
+                
+                global lbl_UPD_genger
+                lbl_UPD_genger=Label(root,text=dic3["Sex"],bg=clr2,font=('Helvetica',15,'bold'))
+                lbl_UPD_genger.place(x=200,y=480)
+                
+                global lbl_UPD_disease
+                lbl_UPD_disease=Label(root,text=dic3["Disease"],bg=clr2,font=('Helvetica',15,'bold'))
+                lbl_UPD_disease.place(x=200,y=530)
+                
+                global lbl_UPD_DrName
+                lbl_UPD_DrName=Label(root,text=dic3["Doctor Name"],bg=clr2,font=('Helvetica',15,'bold'))
+                lbl_UPD_DrName.place(x=200,y=580)
+
+                global frame_for_button
+                frame_for_button=Frame(root,width=410,height=50,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor='red')
+                frame_for_button.place(x=110,y=640)
+                ad_submit=Button(frame_for_button,text='Delete',bg='red',fg='white',width=15,height=1,command=lambda: post_delete_data(hrno_for_delete_records))
+                ad_submit.pack()
+            
+                return delete_data(hrno_for_delete_records)
+
+    print('error')
+    messagebox.showerror("Error", "Hr Number Is Worng, Plz Enter Proper Hr number.")
+    return pre_delete_data()
+
+   
+  
+
+
+def post_delete_data(hrno_for_delete_records):
+    print(hrno_for_delete_records)
+    
+    index=0
+    for dic4 in set:
+        for d4 in dic4:
+            if dic4['HrNo']==hrno_for_delete_records:
+
+                index+=1
+                print(index)
+                print(dic4)
+                del set[index]
+                messagebox.showinfo("Success", "Record deleted successfully!")
+
+                return usless()
+
+            
+#XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+#ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+# upadte data
+
+
+def pre_update_data():
+    global adl1
+    frame_for_label=Frame(root,width=360,height=50,bg=clr5)
+    frame_for_label.place(x=15,y=164)
+    udl1=Label(frame_for_label,text='Enter The Hr. Number:-',bg=clr5,font=('Helvetica',10,'bold'))
+    udl1.pack()
+    frame_for_hrno_entry=Frame(root,width=300,height=300,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr2)
+    frame_for_hrno_entry.place(x=238,y=165)
+    hrno_ent=Entry(frame_for_hrno_entry,bg='light gray',font=('Helvetica',10,'bold'))
+    hrno_ent.pack()
+    frame_for_hrno_button=Frame(root,width=300,height=300,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr2)
+    frame_for_hrno_button.place(x=238,y=200)
+    hrno_button=Button(frame_for_hrno_button,text='Done.',bg='red',fg='white',font=('Helvetica',10,'bold'),command=lambda: update_data(hrno_ent))
+    hrno_button.pack()
+
+
+def update_data(hrno_ent):
+
+    hrno_for_update=hrno_ent.get()
+    print(hrno_for_update)
+    if not hrno_for_update:
+        messagebox.showerror("Error", "Please enter an Hr. Number.")
+        return pre_update_data()
+    found= False
+    for dic2 in set:
+        for d2 in dic2:
+            if dic2['HrNo']==hrno_for_update:
+                print(dic2)
+                
+                
+                
+
+          
+                entry_frame=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor='red')
+                entry_frame.place(x=0,y=150)
+    
+    
+                 # button label pannel for update data=====================================================================================
+                entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+                entry_frameD.place(x=2,y=276)
+                btn_upd= Button(entry_frameD,text='Name:-',bg=clr4,font=('Helvetica',15,'bold'),command=defName)
+                btn_upd.pack()
+                
+                entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+                entry_frameD.place(x=2,y=326)
+                btn_upd= Button(entry_frameD,text='Hr.no.:-',bg=clr4,font=('Helvetica',14,'bold'),command=defHrNo)
+                btn_upd.pack()
+                
+                entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+                entry_frameD.place(x=2,y=376)
+                btn_upd= Button(entry_frameD,text='Age:-',bg=clr4,font=('Helvetica',15,'bold'),command=defAge)
+                btn_upd.pack()
+                
+                entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+                entry_frameD.place(x=2,y=426)
+                btn_upd= Button(entry_frameD,text='Blood Group:-',bg=clr4,font=('Helvetica',15,'bold'),command=defBloodGroup)
+                btn_upd.pack()
+            
+                entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+                entry_frameD.place(x=2,y=476)
+                btn_upd= Button(entry_frameD,text='Gender:-',bg=clr4,font=('Helvetica',15,'bold'),command=defGender)
+                btn_upd.pack()
+                
+                entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+                entry_frameD.place(x=2,y=528)
+                btn_upd= Button(entry_frameD,text='Disease:-',bg=clr4,font=('Helvetica',15,'bold'),command=defDisease)
+                btn_upd.pack()
+                
+                entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+                entry_frameD.place(x=2,y=580)
+                btn_upd= Button(entry_frameD,text='Doctor Name:-',bg=clr4,font=('Helvetica',15,'bold'),command=defDoctorName)
+                btn_upd.pack()
+    
+    
+    
+                #label as button in update data======================================================================
+                global lbl_UPD_name
+                lbl_UPD_name=Label(root,text=':- '+dic2["Name"],bg=clr2,font=('Helvetica',15,'bold'))
+                lbl_UPD_name.place(x=200,y=280)
+
+                global lbl_UPD_hrno
+                lbl_UPD_hrno=Label(root,text=':- '+dic2["HrNo"],bg=clr2,font=('Helvetica',15,'bold'))
+                lbl_UPD_hrno.place(x=200,y=330)
+                
+                global lbl_UPD_age
+                lbl_UPD_age=Label(root,text=':- '+dic2["Age"],bg=clr2,font=('Helvetica',15,'bold'))
+                lbl_UPD_age.place(x=200,y=380)
+                
+                global lbl_UPD_BG
+                lbl_UPD_BG=Label(root,text=':- '+dic2["Blood Group"],bg=clr2,font=('Helvetica',15,'bold'))
+                lbl_UPD_BG.place(x=200,y=430)
+                
+                global lbl_UPD_genger
+                lbl_UPD_genger=Label(root,text=':- '+dic2["Sex"],bg=clr2,font=('Helvetica',15,'bold'))
+                lbl_UPD_genger.place(x=200,y=480)
+                
+                global lbl_UPD_disease
+                lbl_UPD_disease=Label(root,text=':- '+dic2["Disease"],bg=clr2,font=('Helvetica',15,'bold'))
+                lbl_UPD_disease.place(x=200,y=530)
+                
+                global lbl_UPD_DrName
+                lbl_UPD_DrName=Label(root,text=':- '+dic2["Doctor Name"],bg=clr2,font=('Helvetica',15,'bold'))
+                lbl_UPD_DrName.place(x=200,y=580)
+    
+                
+                 #displya screen ========================================================================
+                display_frame = Frame(root,width=380,height=100,bg=clr5,highlightbackground='black',highlightthickness=2)
+                display_frame.place(x=10,y=160)
+    
+                
+                global adl1
+                frame_for_label=Frame(root,width=360,height=50,bg=clr5)
+                frame_for_label.place(x=15,y=164)
+                adl1=Label(frame_for_label,text='Please Update the Folloing Details',bg=clr5)
+                adl1.pack()
+        
+                global frame_for_button
+                frame_for_button=Frame(root,width=410,height=50,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor='red')
+                frame_for_button.place(x=110,y=640)
+                ad_submit=Button(frame_for_button,text='Update',bg='red',fg='white',width=15,height=1)
+                ad_submit.pack()
+                break
+    
+               
+
+#def Set of all entry's=========================================================
+setOfkey=[]
+setofValues=[]             
+
+def defName():
+    
+    lbl_UPD_name.config(text='')
+    def_entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor='red')
+    def_entry_frameD.place(x=100,y=280)
+    def_name_ent=Entry(def_entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=40)
+    def_name_ent.pack() 
+    Name_upd=def_name_ent.get()
+
+    setOfkey.append('Name')
+    setofValues.append(Name_upd)
+    print(setofValues)
+
+
+
+
+
+
+
+def defHrNo():
+    
+    lbl_UPD_hrno.config(text='')
+    def_entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor='red')
+    def_entry_frameD.place(x=100,y=330)
+    def_name_ent=Entry(def_entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=40)
+    def_name_ent.pack()   
+
+
+def defAge():
+    
+    lbl_UPD_age.config(text='')
+    def_entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor='red')
+    def_entry_frameD.place(x=100,y=380)
+    def_name_ent=Entry(def_entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=40)
+    def_name_ent.pack() 
+
+def defBloodGroup():
+    
+    lbl_UPD_BG.config(text='')
+    
+    Blood_Group_list_upd=['A+','B+','AB+','O+','A-','B-','AB-','o-','Other']
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=200,y=430)
+    upd_BG_Combo=ttk.Combobox(entry_frameD,values=Blood_Group_list_upd,width=27,state='readonly')
+    upd_BG_Combo.pack()
+
+def defGender():
+    
+    lbl_UPD_genger.config(text='')
+    
+    gender_list_upd=['Male','Female','Other']
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=150,y=480)
+    upd_GL_Combo=ttk.Combobox(entry_frameD,values=gender_list_upd,width=36,state='readonly')
+    upd_GL_Combo.pack()
+
+    
+
+def defDisease():
+    
+    lbl_UPD_disease.config(text='')
+    def_entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor='red')
+    def_entry_frameD.place(x=120,y=530)
+    def_name_ent=Entry(def_entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=38)
+    def_name_ent.pack() 
+
+
+def defDoctorName():
+    
+    lbl_UPD_DrName.config(text='')
+    
+    Doctor_Name_list_upd=['Dr. Jonh','Dr.gross','Dr.lisa']
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=200,y=580)
+    upd_DNL_Combo=ttk.Combobox(entry_frameD,values=Doctor_Name_list_upd,width=28,state='readonly')
+    upd_DNL_Combo.pack()
+     
+
+
+     
+# CREATE Frame zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+#======================================================================================
+
+
+banner_frame=Frame(root,width=1500,height=100,bg=clr1)
+banner_frame.grid(column=1,row=0)
+
+banner_frameD=Frame(root,width=1000,height=100,bg=clr1)
+banner_frameD.grid(column=1,row=0)
+lb1=Label(banner_frameD,text='Heart Line Hospital',font=('Helvetica',40,'bold'),bg=clr1 )
+lb1.pack()
+
+banner_frameD2=Frame(root,width=1000,height=100,bg=clr1)
+banner_frameD2.place(x=450,y=0)
+lb1=Label(banner_frameD2,text='+',font=('Helvetica',60,'bold'),bg=clr1,fg='green' )
+lb1.pack()
+
+
+#  button frame------------------------------------------------------------------------------------------------
+Button_frame=Frame(root,width=410,height=50,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor='red')
+Button_frame.place(x=0,y=100)
+
+Button_frameD=Frame(root,width=410,height=50,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor='red')
+Button_frameD.place(x=0,y=110)
+
+add_data_btn=Button(Button_frameD,text='New Rcord',bg=clr3,command= add_data)
+add_data_btn.pack(side=LEFT)
+
+show_data_btn=Button(Button_frameD,text='View All Reocd',bg=clr3,command=show_data)
+show_data_btn.pack(side=LEFT )
+
+search_data_btn=Button(Button_frameD,text='Search Record',bg=clr3,command=pre_search_data)
+search_data_btn.pack(side=LEFT)
+
+remove_data=Button(Button_frameD,text='Delete Rcord',bg=clr3,command=pre_delete_data)
+remove_data.pack(side=LEFT)
+
+update_data_btn=Button(Button_frameD,text='Update Rcord',bg=clr3,command=pre_update_data)
+update_data_btn.pack(side=LEFT)
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+#Entry pannel===============================================================
+def usless():
+    
+    entry_frame=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor='red')
+    entry_frame.place(x=0,y=150)
+
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=80,y=280)
+    name_ent=Entry(entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=40)
+    name_ent.pack()
+    
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=80,y=320)
+    hrno_ent=Entry(entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=40)
+    hrno_ent.pack()
+    
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=80,y=360)
+    age_ent=Entry(entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=40)
+    age_ent.pack()
+    
+        # entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    # entry_frameD.place(x=160,y=400)
+    # blood_group_ent=Entry(entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=29)
+    # blood_group_ent.pack()
+    
+    # entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    # entry_frameD.place(x=100,y=440)
+    # gender_ent=Entry(entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=38)
+# gender_ent.pack()
+
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=100,y=480)
+    disease_ent=Entry(entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=37)
+    disease_ent.pack()
+    
+    # entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    # entry_frameD.place(x=150,y=520)
+    # dr_name_ent=Entry(entry_frameD,bg='light gray',font=('Helvetica',10,'bold'),width=31)
+# dr_name_ent.pack()
+
+#combobox==============================================================================================
+
+    Blood_Group_list=['A+','B+','AB+','O+','A-','B-','AB-','o-','Other']
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=160,y=400)
+    BGL_Combo=ttk.Combobox(entry_frameD,values=Blood_Group_list,width=30)
+    BGL_Combo.pack()
+    
+    
+    
+    gender_list=['Male','Female','Other']
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=100,y=440)
+    GL_Combo=ttk.Combobox(entry_frameD,values=gender_list,width=40)
+    GL_Combo.pack()
+    
+    Doctor_Name_list=['Dr. Jonh','Dr.gross','Dr.lisa']
+    entry_frameD=Frame(root,width=410,height=550,bg=clr2,highlightbackground='black',highlightthickness=2,highlightcolor=clr5)
+    entry_frameD.place(x=150,y=520)
+    DNL_Combo=ttk.Combobox(entry_frameD,values=Doctor_Name_list,width=31)
+    DNL_Combo.pack()
+    
+    
+    #label pannel=====================================================================================
+    
+    lbn= Label(root,text='Name:-',bg=clr2,font=('Helvetica',15,'bold'))
+    lbn.place(x=2,y=276)
+    
+    lbn= Label(root,text='Hr.no.:-',bg=clr2,font=('Helvetica',14,'bold'))
+    lbn.place(x=2,y=316)
+    
+    lbn= Label(root,text='Age:-',bg=clr2,font=('Helvetica',15,'bold'))
+    lbn.place(x=2,y=356)
+    
+    lbn= Label(root,text='Blood Group:-',bg=clr2,font=('Helvetica',15,'bold'))
+    lbn.place(x=2,y=396)
+    
+    lbn= Label(root,text='Gender:-',bg=clr2,font=('Helvetica',15,'bold'))
+    lbn.place(x=2,y=436)
+    
+    lbn= Label(root,text='Disease:-',bg=clr2,font=('Helvetica',15,'bold'))
+    lbn.place(x=2,y=478)
+
+    lbn= Label(root,text='Doctor Name:-',bg=clr2,font=('Helvetica',15,'bold'))
+    lbn.place(x=2,y=516)
+    #displya screen ========================================================================
+    display_frame = Frame(root,width=380,height=100,bg=clr5,highlightbackground='black',highlightthickness=2)
+    display_frame.place(x=10,y=160)
+    
+  #big frame==============================================
+    display_frame = Frame(root,width=1000,height=600,bg="light gray",highlightbackground='black',highlightthickness=2)
+    display_frame.place(x=409,y=100)
+    #=============================================================
+    
+    
+    
+    
+      
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+usless()
+
+
+
+root.mainloop()
